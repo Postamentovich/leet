@@ -11,6 +11,7 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
                totalGas -= requiredToNext; 
             } else {
                 continue mainLoop;
+                break;
             }
         }
         
