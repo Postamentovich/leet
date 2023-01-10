@@ -21,20 +21,8 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
         return false;
     }
     
-    let leftEqual = false;
-    let rightEqual = false;
+    let leftEqual = isSameTree(p?.left, q?.left);
+    let rightEqual = isSameTree(p?.right, q?.right);
     
-    if (p?.left === null && q?.left == null) {
-        leftEqual = true;
-    } else {
-        leftEqual = isSameTree(p?.left, q?.left);
-    }
-    
-    if (p?.right === null && q?.right == null) {
-        rightEqual = true;
-    } else {
-        rightEqual = isSameTree(p?.right, q?.right);
-    }
-
     return leftEqual && rightEqual;
 };
