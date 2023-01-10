@@ -21,8 +21,5 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
         return false;
     }
     
-    let leftEqual = isSameTree(p?.left, q?.left);
-    let rightEqual = isSameTree(p?.right, q?.right);
-    
-    return leftEqual && rightEqual;
+    return isSameTree(p?.left, q?.left) && isSameTree(p?.right, q?.right);
 };
