@@ -1,16 +1,11 @@
 function isSubsequence(s: string, t: string): boolean {
-    let tStringArray = t.split('');
+    let sIndex = 0;
 
-    for (let i = 0; i < s.length; i++) {
-        const sLetter = s[i];
-        const tLetterIndex = tStringArray.findIndex((letter) => letter === sLetter);
-
-        if (tLetterIndex === -1) {
-            return false;
+    for (let i = 0; i < t.length; i++) {
+        if (s[sIndex] === t[i]) {
+            sIndex++;
         }
-
-        tStringArray = tStringArray.slice(tLetterIndex + 1);
     }
-
-    return true;
+    
+    return sIndex === s.length;
 };
