@@ -2,23 +2,18 @@ function findMinArrowShots(points: number[][]): number {
     if (!points.length) {
         return 0;
     }
-    const sortedPoints = points.sort((a, b) => a[0] - b[0]);
-    let arrowsCount = 1;
-    let maxX = sortedPoints[0][1];
+    points.sort((a, b) => a[1] - b[1]);
+    let count = 1;
+    let previousShot = points[0][1];
+    for (let i = 1; i < points.length; i++) {
+        const [start, end] = points[i];
 
-    for (let i = 1; i < sortedPoints.length; i++) {
-        const balloon = sortedPoints[i];
-        if (maxX > balloon[1]) {
-            maxX = balloon[1];
-        }
-        
-        if (balloon[0] <= maxX) {
+        if (previousShot >= start) {
             continue;
-        } 
-        
-        arrowsCount++;
-        maxX = balloon[1];
+        }
+
+        count++;
+        previousShot = end;
     }
-    return arrowsCount;
-    
+    return count;
 };
