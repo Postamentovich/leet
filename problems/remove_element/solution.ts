@@ -1,18 +1,12 @@
 function removeElement(nums: number[], val: number): number {
-    let result = nums.length;
-    
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === val) {
-            result--
-            nums[i] = undefined;
+    let count = nums.length;
+    for (let i = 0; i < nums.length;i++) {
+        const num = nums[i];
+        if (num === val) {
+            nums[i] = Infinity;
+            count--;
         }
     }
-
-    nums.sort((a) => {
-        if (a === undefined) {
-            return -1
-        }
-    });
-    
-    return result;
+    nums.sort((a, b) => a - b);
+    return count;
 };
