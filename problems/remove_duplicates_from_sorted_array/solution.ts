@@ -1,9 +1,20 @@
 function removeDuplicates(nums: number[]): number {
-    let uniquesNums = new Set(nums);
+    let p1 = 0;
+    let p2 = 1;
+    let result = 1;
 
-    Array.from(uniquesNums).forEach((value, index) => {
-        nums[index] = value;
-    })
+    while (p2 < nums.length) {
+        let current = nums[p1];
+        let next = nums[p2];
+        if (current === next) {
+            p2++;
+        } else {
+            p2++;
+            p1++;
+            nums[p1] = next;
+            result++;
+        }
+    }
 
-    return uniquesNums.size;
+    return result;
 };
