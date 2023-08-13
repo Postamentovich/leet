@@ -2,6 +2,8 @@
  Do not return anything, modify nums in-place instead.
  */
 function rotate(nums: number[], k: number): void {
-    const tempArray = nums.splice(nums.length - k, k);
-    nums.unshift(...tempArray)
+    for (let i = 0; i < k; i++) {
+        const lastNum = nums.pop()
+        nums.unshift(lastNum)
+    }
 };
