@@ -1,22 +1,22 @@
 function canCompleteCircuit(gas: number[], cost: number[]): number {
-    mainLoop:
+    let gasStation = 0;
+    let tank = 0;
+    let total = 0;
+
     for (let i = 0; i < gas.length; i++) {
-        let totalGas = 0;
-        for (let j = 0; j < gas.length; j++) {
-            const currentIndex = i + j >= gas.length ? i+ j - gas.length : i + j;
-            totalGas += gas[currentIndex];
-            const requiredToNext = cost[currentIndex];
-            
-            if (requiredToNext <= totalGas) {
-               totalGas -= requiredToNext; 
-            } else {
-                continue mainLoop;
-                break;
-            }
+        const currentCost = gas[i] - cost[i];
+        tank += currentCost;
+        total += currentCost;
+
+        if (tank < 0) {
+            gasStation = i + 1;
+            tank = 0;
         }
-        
-        return i;
-        
     }
-    return -1;
+
+    if (total < 0) {
+        return -1;
+    }
+
+    return gasStation;
 };
