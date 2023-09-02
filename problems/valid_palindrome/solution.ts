@@ -1,10 +1,27 @@
 function isPalindrome(s: string): boolean {
-    const lowerStr = s.toLowerCase();
-    const arrStr = lowerStr.split('').filter(el => /\w/.test(el) && el !== '_');
-    while(arrStr.length) {
-        const firstChar = arrStr.shift();
-        const lastChar = arrStr.pop();
-        if (firstChar && lastChar && firstChar !== lastChar) return false;
+
+    const lowerCaseString = s.toLowerCase();
+
+    let leftPointer = 0;
+    let rightPointer = s.length - 1;
+
+    while (leftPointer < rightPointer) {
+        const left = lowerCaseString[leftPointer];
+        if (!left.match(/[a-z0-9]/)) {
+            leftPointer++;
+            continue;
+        }
+        const right = lowerCaseString[rightPointer];
+        if (!right.match(/[a-z0-9]/)) {
+            rightPointer--;
+            continue;
+        }
+        if (left !== right) {
+            return false;
+        }
+        leftPointer++;
+        rightPointer--;
     }
+
     return true;
 };
